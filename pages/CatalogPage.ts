@@ -8,7 +8,6 @@ import { ApiClient } from '../utils/apiClient';
 export default class CatalogPage {
 
     constructor(public page: Page) {} // Constructor to initialize the page object
-  
 
     async search(searchInput) {
         await step('Broad Search', async () => {
@@ -54,7 +53,7 @@ export default class CatalogPage {
         });
     }
 
-    async searchResults(searchInput: string,valid:boolean, apiClient: ApiClient) {
+    async searchResults(searchInput: string, apiClient: ApiClient) {
         await step('Search Results', async () => {
             const searchResultsLocator = this.page.locator(catalogSelectors.searchResults);
             const noResultsText = this.page.locator(catalogSelectors.noResults);
@@ -67,13 +66,13 @@ export default class CatalogPage {
 
 
 
-            // const flag = await noResultsText.isVisible()
+            const flag = await noResultsText.isVisible()
 
             // console.log("Flag value: ", flag);
             console.log("API Results Count: ", apiResultsCount);
             console.log("Search Input: ", searchInput);
 
-            if (!valid) {
+            if (flag) {
                 // No results found in UI
                 await expect(noResultsText).toBeVisible();
                 await expect(noResultsText).toContainText(catalogData.noResultsText);

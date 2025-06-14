@@ -25,7 +25,7 @@ test.beforeEach(async ({ page, baseURL }) => {
 test ('@smoke Search with valid data',  async ({ page, headerPage, catalogPage, apiClient }) => {
     await headerPage.catalog(); // Navigate to the catalog page
     await catalogPage.search(catalogData.validSearchText); // Perform a search with invalid data
-    await catalogPage.searchResults(catalogData.skillSearchInput,true, apiClient); // Verify the search results are displayed
+    await catalogPage.searchResults(catalogData.skillSearchInput, apiClient); // Verify the search results are displayed
 
 })
 
@@ -34,7 +34,7 @@ test ('@smoke Search with valid data',  async ({ page, headerPage, catalogPage, 
 test ('@smoke Search with invalid data',  async ({ page, headerPage, catalogPage, apiClient }) => {
     await headerPage.catalog(); // Navigate to the catalog page
     await catalogPage.search(catalogData.invalidSearchText); // Perform a search with invalid data
-    await catalogPage.searchResults(catalogData.invalidSearchText,false, apiClient); // Verify the search results are displayed
+    await catalogPage.searchResults(catalogData.invalidSearchText, apiClient); // Verify the search results are displayed
 
 })
 
