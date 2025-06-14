@@ -1,0 +1,14 @@
+{
+    "searchButton": "//button[@aria-label='Search']",
+    "searchBox": "(//input[@aria-label='Search input'])[2]",
+    "searchResults": "(//h1[@class='chakra-heading css-18hl2bw'])[1]",
+    "skill": "//button[@id='accordion-button-:Rjaksrlajl5t6:']/span[1]",
+    "skillSearch":"(//div[text()='Type to Search']/following-sibling::div)[2]",
+    "skillFiltered":"(//span[@class='chakra-radio__label css-14iyyou']//div)[2]",
+    "level": "//button[@id='accordion-button-:Rjqksrlajl5t6:']/span[1]",
+    "intermediateLevel": "(//input[@name='difficulty--intermediate']/following-sibling::span)[3]",
+    "sortBy": "(//div[@id='react-select-select-instance-catalogFilter-placeholder'])[1]",
+    "hightlyRated": "(//span[@class='chakra-radio__label css-14iyyou']//div)[2]",
+    "intermediateLevelFiltered": "(//span[@class='chakra-radio__label css-14iyyou']//div)[2]",
+    "noResults": "//h2[@class='chakra-heading css-1hsf0v9']"
+}

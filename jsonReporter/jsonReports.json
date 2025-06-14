@@ -1,0 +1,161 @@
+{
+  "config": {
+    "configFile": "/home/yuvashree.m/Documents/Udacity/playwright.config.ts",
+    "rootDir": "/home/yuvashree.m/Documents/Udacity",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "jsonReporter/jsonReports.json"
+        }
+      ],
+      [
+        "dot",
+        null
+      ],
+      [
+        "/home/yuvashree.m/Documents/Udacity/node_modules/allure-playwright/dist/cjs/index.js",
+        {
+          "outputFolder": "allure-results"
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/yuvashree.m/Documents/Udacity/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "Desktop Chrome",
+        "name": "Desktop Chrome",
+        "testDir": "/home/yuvashree.m/Documents/Udacity",
+        "testIgnore": [],
+        "testMatch": [
+          "cloudbees.spec.ts",
+          "invalidSearchInput.spec.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "3way",
+    "version": "1.52.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests/invalidSearchInput.spec.ts",
+      "file": "tests/invalidSearchInput.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "@smoke Search with invalid data",
+          "ok": true,
+          "tags": [
+            "smoke"
+          ],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "Desktop Chrome",
+              "projectName": "Desktop Chrome",
+              "results": [
+                {
+                  "workerIndex": 37,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12733,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Catalog page loaded successfully\n"
+                    },
+                    {
+                      "text": "API Results Count:  \u001b[33m0\u001b[39m\n"
+                    },
+                    {
+                      "text": "Search Input:  NonExistentRandomTerm1234\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Click on Catalog link",
+                      "duration": 3572
+                    },
+                    {
+                      "title": "Broad Search",
+                      "duration": 4631
+                    },
+                    {
+                      "title": "Search Results",
+                      "duration": 488,
+                      "steps": [
+                        {
+                          "title": "Validate API results count",
+                          "duration": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "startTime": "2025-06-14T10:05:52.423Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51e538f5e8a1c2ceeb95-e35f801d547a76258880",
+          "file": "tests/invalidSearchInput.spec.ts",
+          "line": 34,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-06-14T10:05:50.983Z",
+    "duration": 14563.77199999988,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "validSearchText": "data",
+    "skillSearchInput": "scikit-learn",
+    "intermediateLevel": "intermediate",
+    "noResultsText": "No Results Found",
+    "invalidSearchText": "NonExistentRandomTerm1234"
+}
