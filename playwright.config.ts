@@ -34,6 +34,7 @@ export default defineConfig({
     }],
     ['list'],
   ],
+  fullyParallel: false,
   grep: /@smoke/ // Run only tests tagged with @smoke
 });
 

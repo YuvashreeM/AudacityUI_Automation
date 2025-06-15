@@ -21,6 +21,7 @@ export default class CatalogPage {
             const searchResultsLocator = this.page.locator(catalogSelectors.searchResults);
             await expect(searchResultsLocator).toBeVisible();
             await expect(searchResultsLocator).toContainText(searchInput);
+            await expect(this.page.url()).toContain(searchInput)
 
         });
     }
@@ -39,23 +40,33 @@ export default class CatalogPage {
             await this.page.keyboard.press('Enter');
             // Verify the skill filter is getting displayed
             await this.page.locator(catalogSelectors.skillFiltered).waitFor({ state: 'visible' }); // Wait for the skill filter to be visible
-            // await this.page.waitForSelector(catalogSelectors.skillFiltered); // Wait for the skill filter to be visible
             await expect(this.page.locator(catalogSelectors.skillFiltered)).toContainText(input); // Verify the skill filter contains the input text
-        
+            await expect(this.page.url()).toContain(input);
         });
     }
 
     async sortByRating(rating: string) {
         await step(`Sort by Rating: ${rating}`, async () => {
-            await this.page.locator(catalogSelectors.sortBy).click(); // Click on the sort by dropdown
-            // Select the rating option from the dropdown
-            if(rating === 'Highly Rated') {
-                await this.page.locator(catalogSelectors.hightlyRated).click(); // Click on the rating option
-            }
-            // Optionally, wait for results to update (e.g., wait for network idle or a loading spinner to disappear)
-            await this.page.waitForLoadState('networkidle');
+            // 1. Disable auto-scroll and smooth scrolling
+            await this.page.locator(catalogSelectors.sortBy).click({ 
+            noWaitAfter: true,
+            force: true 
         });
-
+        
+        // Wait for dropdown to appear
+        await this.page.waitForSelector(catalogSelectors.hightlyRated);
+        if(rating === 'Highly Rated') {
+            await this.page.locator(catalogSelectors.hightlyRated).click({ 
+                noWaitAfter: true,
+                force: true 
+            });
+            await this.page.waitForTimeout(1000); // Wait for the filter to apply
+            await expect(this.page.url()).toContain('highest-rated');
+        }
+        
+        // Manual wait for results
+        await this.page.waitForLoadState('load');
+        });
     }
 
     async levelFilter() {
@@ -65,11 +76,13 @@ export default class CatalogPage {
             // click on the intermediate level checkbox
             await this.page.locator(catalogSelectors.intermediateLevel).click (); 
             // Verify the level filter is getting displayed
-             await this.page.evaluate(() => window.scrollTo(0, 0));
-            // await this.page.locator(catalogSelectors.intermediateLevelFiltered).scrollIntoViewIfNeeded(); // Wait for the level filter to be visible
+            await this.page.locator(catalogSelectors.intermediateLevelFiltered).scrollIntoViewIfNeeded(); // Wait for the level filter to be visible
             await this.page.locator(catalogSelectors.intermediateLevelFiltered).waitFor({ state: 'visible' }); // Wait for the level filter to be visible
             await expect(this.page.locator(catalogSelectors.intermediateLevelFiltered)).toContainText(catalogData.intermediateLevel);
-            
+            //wait till the filter is applied
+            await this.page.waitForTimeout(1000);
+            //verify the level filter is displayed in the url
+            await expect(this.page.url()).toContain(catalogData.intermediateLevel);
         });
     }
 
@@ -77,7 +90,10 @@ export default class CatalogPage {
         await step('Search Results', async () => {
             const searchResultsLocator = this.page.locator(catalogSelectors.ResultsCount);
             const noResultsText = this.page.locator(catalogSelectors.noResults);
-
+            // Store the UI results in the order they appear
+            const uiResultsArray = await searchResultsLocator.allTextContents();
+            const uiResultsOrdered = uiResultsArray.map(text => text.trim());
+            console.log('ui order:', uiResultsOrdered);
             // Call the API client to get the API response
             const apiResponse = await apiClient.searchCatalog(searchInput, skillValue, levelValue);
             expect(apiResponse.status()).toBe(200);
@@ -86,10 +102,6 @@ export default class CatalogPage {
             const apiResultsCount = responseData.searchResult?.hits?.length || 0;
 
             const flag = await noResultsText.isVisible()
-
-            // console.log("Flag value: ", flag);
-            console.log("API Results Count: ", apiResultsCount);
-            console.log("Search Input: ", searchInput);
 
             if (flag) {
                 // No results found in UI
@@ -102,7 +114,11 @@ export default class CatalogPage {
                 
             } else {
                 // Results count is displayed in UI
-                const uiResultsCount = await searchResultsLocator.count();
+                const uiResultsArray = await searchResultsLocator.allTextContents();
+                const uiResultsCount = uiResultsArray.length;
+                //get the text value from the locator
+                console.log("ui text:", uiResultsArray);
+                console.log("ui result count:", uiResultsCount);
                 // Validate API and UI results count match
                 const uniqueTitles = [
                     ...new Set(
@@ -112,7 +128,15 @@ export default class CatalogPage {
                     )
                 ];  
                 console.log("Unique Titles from API: ", uniqueTitles);
-                expect(apiResultsCount).toBe(uiResultsCount);
+                for (let i = 0; i < uiResultsOrdered.length; i++) {
+                    expect(uiResultsOrdered[i].trim()).toBe(uniqueTitles[i]);
+                }
+                // Validate order matches exactly
+                const uiResultsTrimmed = uiResultsOrdered.map(text => text.trim());
+                if (JSON.stringify(uiResultsTrimmed) !== JSON.stringify(uniqueTitles)) {
+                    throw new Error('Order of UI results does not match API results');
+                }
+                expect(uniqueTitles.length).toBe(uiResultsCount);
             }
         });
     }

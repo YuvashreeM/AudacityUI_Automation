@@ -1,5 +1,7 @@
 import { APIRequestContext } from '@playwright/test';
 
+const CATALOG_API_URL = process.env.UDACITY_CATALOG_API_URL || "https://api.udacity.com/api";
+
 export class ApiClient {
     constructor(private request: APIRequestContext) {}
 
@@ -18,10 +20,10 @@ export class ApiClient {
             enrolledOnly: false
         };
         const response = await this.request.post(
-            "https://api.udacity.com/api/unified-catalog/search",
+            `${CATALOG_API_URL}/unified-catalog/search`,
             {
-                data: requestBody,
-                headers: { 'Content-Type': 'application/json' }
+            data: requestBody,
+            headers: { 'Content-Type': 'application/json' }
             }
         );
         return response;

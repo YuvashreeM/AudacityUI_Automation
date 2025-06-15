@@ -9,8 +9,8 @@
     "level": "//button[@id='accordion-button-:Rjqksrlajl5t6:']/span[1]",
     "intermediateLevel": "//div[@id='accordion-panel-:Rjqksrlajl5t6:']//div[@class='chakra-stack css-1811skr']//label[4]",
     "sortBy": "(//div[@id='react-select-select-instance-catalogFilter-placeholder'])[1]",
-    "hightlyRated": "(//span[@class='chakra-radio__label css-14iyyou']//div)[2]",
+    "hightlyRated": "//div[@id='react-select-select-instance-catalogFilter-option-2']",
     "intermediateLevelFiltered": "(//section[@class='css-vqtmg5']//button[@class='css-5f6mar']//p)[2]",
     "noResults": "//h2[@class='chakra-heading css-1hsf0v9']",
-    "ResultsCount": "//div[@class='css-1meym2z']//article"
+    "ResultsCount": "//article[@role='group']//div[2]//a"
 }

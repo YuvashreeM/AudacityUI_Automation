@@ -3,12 +3,6 @@ import pageTitle from "../testData/pageTitle.json"
 import {step} from 'allure-js-commons';
 import * as catalogData from "../testData/catalogData.json";
 
-const searchParams = {
-    skillValue: "taxonomy:8d5a0df8-ac30-4bee-a48d-fa19ad02bd43",
-    levelValue: "intermediate",
-    ratingValue: "Highly Rated"
-};
-
 
 test.beforeEach(async ({ page, baseURL }) => {
     try{
@@ -26,13 +20,13 @@ test.beforeEach(async ({ page, baseURL }) => {
     }
 })
 
-test ('@smoke Search with valid data',  async ({ page, headerPage, catalogPage, apiClient }) => {
+test ('@smoke Search with valid data',  async ({ headerPage, catalogPage, apiClient }) => {
     await headerPage.catalog(); // Navigate to the catalog page
     await catalogPage.search(catalogData.validSearchText); // Perform a search with invalid data
-    await catalogPage.sortByRating(searchParams.ratingValue); // Sort by rating
+    await catalogPage.sortByRating(catalogData.ratingFilter); // Sort by rating
     await catalogPage.skillFilter(catalogData.skillSearchInput); // Apply the skill filter
     await catalogPage.levelFilter(); // Apply the level filter
-    await catalogPage.searchResults(catalogData.skillSearchInput, searchParams.skillValue, searchParams.levelValue, apiClient); // Verify the search results are displayed
+    await catalogPage.searchResults(catalogData.skillSearchInput, catalogData.skillValue, catalogData.levelFilter, apiClient); // Verify the search results are displayed
 
 })
 
