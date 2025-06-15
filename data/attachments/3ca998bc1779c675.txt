@@ -1,0 +1,72 @@
+Catalog page loaded successfully
+ui order: [
+  'Introduction to Machine Learning with Pytorch',
+  'Deep Learning',
+  'Introduction to Machine Learning with TensorFlow',
+  'AWS Machine Learning Engineer Nanodegree',
+  'Introduction to Deep Learning',
+  'Supervised Learning',
+  'Introduction to Machine Learning'
+]
+API Response Data:  {
+  searchResult: {
+    appliedRules: null,
+    appliedRelevancyStrictness: 0,
+    aroundLatLng: '',
+    automaticRadius: '',
+    exhaustiveFacetsCount: false,
+    exhaustiveNbHits: true,
+    explain: null,
+    extensions: null,
+    facets: null,
+    facets_stats: null,
+    hits: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ],
+    hitsPerPage: 24,
+    index: '',
+    indexUsed: '',
+    length: 0,
+    message: '',
+    nbHits: 7,
+    nbPages: 1,
+    nbSortedHits: 0,
+    offset: 0,
+    page: 0,
+    params: 'filters=locale%3Aen-us+AND+is_offered_to_public%3Atrue+AND+skills%3A%22taxonomy%3A8d5a0df8-ac30-4bee-a48d-fa19ad02bd43%22+AND+difficulty%3A%22Intermediate%22&hitsPerPage=24&page=0&query=scikit-learn',
+    parsedQuery: '',
+    processingTimeMS: 1,
+    query: 'scikit-learn',
+    queryAfterRemoval: '',
+    queryID: '',
+    serverUsed: '',
+    timeoutCounts: false,
+    timeoutHits: false,
+    userData: null,
+    abTestVariantID: 0,
+    abTestID: 0,
+    renderingContent: {}
+  }
+}
+ui text: [
+  'Introduction to Machine Learning with Pytorch',
+  'Deep Learning',
+  'Introduction to Machine Learning with TensorFlow',
+  'AWS Machine Learning Engineer Nanodegree',
+  'Introduction to Deep Learning',
+  'Supervised Learning',
+  'Introduction to Machine Learning'
+]
+ui result count: 7
+Unique Titles from API:  [
+  'Introduction to Machine Learning with Pytorch',
+  'Deep Learning',
+  'Introduction to Machine Learning with TensorFlow',
+  'AWS Machine Learning Engineer Nanodegree',
+  'Introduction to Deep Learning',
+  'Supervised Learning',
+  'Introduction to Machine Learning'
+]

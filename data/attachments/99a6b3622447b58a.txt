@@ -1,0 +1,43 @@
+Catalog page loaded successfully
+ui order: []
+API Response Data:  {
+  searchResult: {
+    appliedRules: null,
+    appliedRelevancyStrictness: 0,
+    aroundLatLng: '',
+    automaticRadius: '',
+    exhaustiveFacetsCount: false,
+    exhaustiveNbHits: true,
+    explain: null,
+    extensions: null,
+    facets: null,
+    facets_stats: null,
+    hits: [],
+    hitsPerPage: 24,
+    index: '',
+    indexUsed: '',
+    length: 0,
+    message: '',
+    nbHits: 0,
+    nbPages: 0,
+    nbSortedHits: 0,
+    offset: 0,
+    page: 0,
+    params: 'filters=locale%3Aen-us+AND+is_offered_to_public%3Atrue&hitsPerPage=24&page=0&query=NonExistentRandomTerm1234',
+    parsedQuery: '',
+    processingTimeMS: 1,
+    query: 'NonExistentRandomTerm1234',
+    queryAfterRemoval: '',
+    queryID: '',
+    serverUsed: '',
+    timeoutCounts: false,
+    timeoutHits: false,
+    userData: null,
+    abTestVariantID: 0,
+    abTestID: 0,
+    renderingContent: {}
+  }
+}
+ui text: []
+ui result count: 0
+Unique Titles from API:  []
