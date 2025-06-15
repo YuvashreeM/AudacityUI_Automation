@@ -1,0 +1,23 @@
+{
+  "name": "playwright--vs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "clean:allure": "rimraf allure-results",
+    "test:allure": "npm run clean:allure ; npx playwright test",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:full": "npm run test:allure && npm run allure:generate && npm run allure:open"
+    
+  },
+  "keywords": [],
+  "author": "yuvashree",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.1",
+    "allure-playwright": "^3.2.2"
+  }
+}
