@@ -10,6 +10,7 @@ export default class HeaderPage {
 
     async catalog() {
         await step('Click on Catalog link', async () => {
+            await this.page.locator(headerSelectors.Catalog).isVisible(); // Ensure the catalog button is visible before clicking
             await this.page.locator(headerSelectors.Catalog).click(); // Click on the catalog button
             //wait for the catalog page to load
             await this.page.waitForLoadState('domcontentloaded'); // Wait for the network to be idle

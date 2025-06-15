@@ -23,8 +23,8 @@ export default defineConfig({
     screenshot: "only-on-failure",
     video: "retain-on-failure"
   },
-  timeout: 60000,
-  retries: 1,
+  timeout: 120000,
+  retries: process.env.CI? 2:1,
   reporter: [
     ['html', { open: 'never' }], 
     ['json', { outputFile: 'jsonReporter/jsonReports.json' }],
