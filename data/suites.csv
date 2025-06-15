@@ -1,3 +1,3 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"Search with invalid data: NonExistentRandomTerm1234","9678","@smoke Search with invalid data","Desktop Chrome","Sun Jun 15 09:13:24 UTC 2025","passed","Sun Jun 15 09:13:34 UTC 2025","","tests/search-input.spec.ts","",""
-"Search with valid data: scikit","19224","@smoke Catalog Search Functionality With Valid Data","Desktop Chrome","Sun Jun 15 09:13:04 UTC 2025","passed","Sun Jun 15 09:13:23 UTC 2025","","tests/search-input.spec.ts","",""
+"Search with invalid data: NonExistentRandomTerm1234","9556","@smoke Search with invalid data","Desktop Chrome","Sun Jun 15 13:39:57 UTC 2025","passed","Sun Jun 15 13:40:07 UTC 2025","","tests/search-input.spec.ts","",""
+"Search with valid data: scikit","18510","@smoke Catalog Search Functionality With Valid Data","Desktop Chrome","Sun Jun 15 13:39:39 UTC 2025","passed","Sun Jun 15 13:39:57 UTC 2025","","tests/search-input.spec.ts","",""
