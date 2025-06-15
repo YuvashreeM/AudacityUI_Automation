@@ -1,3 +1,3 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","20800","@smoke Search with valid data","Desktop Chrome","Sun Jun 15 08:23:35 UTC 2025","passed","Sun Jun 15 08:23:56 UTC 2025","","tests/search-input.spec.ts","",""
-"","10404","@smoke Search with invalid data","Desktop Chrome","Sun Jun 15 08:24:00 UTC 2025","passed","Sun Jun 15 08:24:11 UTC 2025","","tests/search-input.spec.ts","",""
+"","16953","@smoke Search with valid data","Desktop Chrome","Sun Jun 15 08:34:32 UTC 2025","passed","Sun Jun 15 08:34:49 UTC 2025","","tests/search-input.spec.ts","",""
+"","9895","@smoke Search with invalid data","Desktop Chrome","Sun Jun 15 08:34:50 UTC 2025","passed","Sun Jun 15 08:35:00 UTC 2025","","tests/search-input.spec.ts","",""

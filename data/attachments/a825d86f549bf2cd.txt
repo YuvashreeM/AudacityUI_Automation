@@ -38,6 +38,3 @@ API Response Data:  {
     renderingContent: {}
   }
 }
-ui text: []
-ui result count: 0
-Unique Titles from API:  []
