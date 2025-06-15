@@ -27,11 +27,12 @@ jobs:
       - name: Run Playwright tests with xvfb
         run: xvfb-run npx playwright test
 
-      - name: Install Allure CLI v3 (beta)
-        run: npm install -D allure@3.0.0-beta.15
+      - name: Install Allure CLI v2
+        run: npm install -D allure-commandline
 
       - name: Generate Allure Report
-        run: npx allure generate ./allure-results --output ./allure-report --clean
+        run: |
+          npx allure generate ./allure-results -o ./allure-report --clean
 
       - name: Upload Playwright HTML Report
         uses: actions/upload-artifact@v4
