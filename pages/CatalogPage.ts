@@ -21,22 +21,41 @@ export default class CatalogPage {
             const searchResultsLocator = this.page.locator(catalogSelectors.searchResults);
             await expect(searchResultsLocator).toBeVisible();
             await expect(searchResultsLocator).toContainText(searchInput);
+
         });
     }
 
-    async skillFilter() {
-        await step('Skill Filter', async () => {
+    async skillFilter(input: string) {
+        await step(`Skill Filter with value: ${input}`, async () => {
+            // wait for the loading to be complete
+            await this.page.locator(catalogSelectors.skill).isVisible(); // Ensure the network is idle before proceeding
             // Click on the skill filter button
             await this.page.locator(catalogSelectors.skill).click();
+            await this.page.locator(catalogSelectors.skillSearch).click(); // Click on the skill search input to focus it
+            await this.page.waitForLoadState('load') // Ensure the page is fully loaded before interacting with elements
             // Wait for the skill filter options to be visible
-            await this.page.locator(catalogSelectors.skillSearch).fill(catalogData.skillSearchInput); // Fill the skill search input with the search term
+            await this.page.locator(catalogSelectors.skillSearch).type(input); // Fill the skill search input with the search term
             // Click the search button within the skill filter
             await this.page.keyboard.press('Enter');
             // Verify the skill filter is getting displayed
-            const skillFilteredLocator = this.page.locator(catalogSelectors.skillFiltered);
-            await expect(skillFilteredLocator).toBeVisible();
-            await expect(skillFilteredLocator).toContainText(catalogData.skillSearchInput);
+            await this.page.locator(catalogSelectors.skillFiltered).waitFor({ state: 'visible' }); // Wait for the skill filter to be visible
+            // await this.page.waitForSelector(catalogSelectors.skillFiltered); // Wait for the skill filter to be visible
+            await expect(this.page.locator(catalogSelectors.skillFiltered)).toContainText(input); // Verify the skill filter contains the input text
+        
         });
+    }
+
+    async sortByRating(rating: string) {
+        await step(`Sort by Rating: ${rating}`, async () => {
+            await this.page.locator(catalogSelectors.sortBy).click(); // Click on the sort by dropdown
+            // Select the rating option from the dropdown
+            if(rating === 'Highly Rated') {
+                await this.page.locator(catalogSelectors.hightlyRated).click(); // Click on the rating option
+            }
+            // Optionally, wait for results to update (e.g., wait for network idle or a loading spinner to disappear)
+            await this.page.waitForLoadState('networkidle');
+        });
+
     }
 
     async levelFilter() {
@@ -46,25 +65,25 @@ export default class CatalogPage {
             // click on the intermediate level checkbox
             await this.page.locator(catalogSelectors.intermediateLevel).click (); 
             // Verify the level filter is getting displayed
-            const levelFilteredLocator = this.page.locator(catalogSelectors.intermediateLevelFiltered);
-            await expect(levelFilteredLocator).toBeVisible();
-            await expect(levelFilteredLocator).toContainText(catalogData.intermediateLevel);
+             await this.page.evaluate(() => window.scrollTo(0, 0));
+            // await this.page.locator(catalogSelectors.intermediateLevelFiltered).scrollIntoViewIfNeeded(); // Wait for the level filter to be visible
+            await this.page.locator(catalogSelectors.intermediateLevelFiltered).waitFor({ state: 'visible' }); // Wait for the level filter to be visible
+            await expect(this.page.locator(catalogSelectors.intermediateLevelFiltered)).toContainText(catalogData.intermediateLevel);
             
         });
     }
 
-    async searchResults(searchInput: string, apiClient: ApiClient) {
+    async searchResults(searchInput: string, skillValue, levelValue, apiClient: ApiClient) {
         await step('Search Results', async () => {
-            const searchResultsLocator = this.page.locator(catalogSelectors.searchResults);
+            const searchResultsLocator = this.page.locator(catalogSelectors.ResultsCount);
             const noResultsText = this.page.locator(catalogSelectors.noResults);
 
             // Call the API client to get the API response
-            const apiResponse = await apiClient.searchCatalog(searchInput);
+            const apiResponse = await apiClient.searchCatalog(searchInput, skillValue, levelValue);
             expect(apiResponse.status()).toBe(200);
             const responseData = await apiResponse.json();
+            console.log("API Response Data: ", responseData);
             const apiResultsCount = responseData.searchResult?.hits?.length || 0;
-
-
 
             const flag = await noResultsText.isVisible()
 
@@ -82,10 +101,17 @@ export default class CatalogPage {
                 });
                 
             } else {
-                // Results found in UI
-                await expect(searchResultsLocator).toBeVisible();
+                // Results count is displayed in UI
                 const uiResultsCount = await searchResultsLocator.count();
                 // Validate API and UI results count match
+                const uniqueTitles = [
+                    ...new Set(
+                        responseData.searchResult.hits
+                        .map((hit: any) => hit._highlightResult?.title?.value)
+                        .filter((title: string | undefined) => title !== undefined)
+                    )
+                ];  
+                console.log("Unique Titles from API: ", uniqueTitles);
                 expect(apiResultsCount).toBe(uiResultsCount);
             }
         });

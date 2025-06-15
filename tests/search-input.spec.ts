@@ -3,7 +3,11 @@ import pageTitle from "../testData/pageTitle.json"
 import {step} from 'allure-js-commons';
 import * as catalogData from "../testData/catalogData.json";
 
-// const searchData:string = "NonExistentRandomTerm1234"
+const searchParams = {
+    skillValue: "taxonomy:8d5a0df8-ac30-4bee-a48d-fa19ad02bd43",
+    levelValue: "intermediate",
+    ratingValue: "Highly Rated"
+};
 
 
 test.beforeEach(async ({ page, baseURL }) => {
@@ -25,7 +29,10 @@ test.beforeEach(async ({ page, baseURL }) => {
 test ('@smoke Search with valid data',  async ({ page, headerPage, catalogPage, apiClient }) => {
     await headerPage.catalog(); // Navigate to the catalog page
     await catalogPage.search(catalogData.validSearchText); // Perform a search with invalid data
-    await catalogPage.searchResults(catalogData.skillSearchInput, apiClient); // Verify the search results are displayed
+    await catalogPage.sortByRating(searchParams.ratingValue); // Sort by rating
+    await catalogPage.skillFilter(catalogData.skillSearchInput); // Apply the skill filter
+    await catalogPage.levelFilter(); // Apply the level filter
+    await catalogPage.searchResults(catalogData.skillSearchInput, searchParams.skillValue, searchParams.levelValue, apiClient); // Verify the search results are displayed
 
 })
 
@@ -34,7 +41,7 @@ test ('@smoke Search with valid data',  async ({ page, headerPage, catalogPage, 
 test ('@smoke Search with invalid data',  async ({ page, headerPage, catalogPage, apiClient }) => {
     await headerPage.catalog(); // Navigate to the catalog page
     await catalogPage.search(catalogData.invalidSearchText); // Perform a search with invalid data
-    await catalogPage.searchResults(catalogData.invalidSearchText, apiClient); // Verify the search results are displayed
+    await catalogPage.searchResults(catalogData.invalidSearchText,null,null, apiClient); // Verify the search results are displayed
 
 })
 

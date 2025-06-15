@@ -3,16 +3,17 @@ import { APIRequestContext } from '@playwright/test';
 export class ApiClient {
     constructor(private request: APIRequestContext) {}
 
-    async searchCatalog(query: string) {
+    async searchCatalog(query: string, skill: string, level: string): Promise<any> {
         const requestBody = {
             searchText: query,
-            sortBy: "relevance",
+            sortBy: "avgRating" ,
             page: 0,
             pageSize: 24,
             keys: [],
-            skills: [],
+            skills: [skill],
             schools: [],
             rawDurations: [],
+            difficulties: [level],
             semanticTypes: [],
             enrolledOnly: false
         };
