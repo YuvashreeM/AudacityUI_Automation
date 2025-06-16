@@ -51,7 +51,7 @@
       {
         "outputDir": "/home/yuvashree.m/Documents/Udacity/test-results",
         "repeatEach": 1,
-        "retries": 0,
+        "retries": 1,
         "metadata": {
           "actualWorkers": 1
         },
@@ -60,26 +60,115 @@
         "testDir": "/home/yuvashree.m/Documents/Udacity",
         "testIgnore": [],
         "testMatch": [
-          "cloudbees.spec.ts",
-          "invalidSearchInput.spec.ts"
+          "search-input.spec.ts"
         ],
-        "timeout": 60000
+        "timeout": 120000
       }
     ],
     "shard": null,
     "updateSnapshots": "missing",
-    "updateSourceMethod": "3way",
+    "updateSourceMethod": "patch",
     "version": "1.52.0",
     "workers": 4,
     "webServer": null
   },
   "suites": [
     {
-      "title": "tests/invalidSearchInput.spec.ts",
-      "file": "tests/invalidSearchInput.spec.ts",
+      "title": "tests/search-input.spec.ts",
+      "file": "tests/search-input.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [
+        {
+          "title": "@smoke Catalog Search Functionality With Valid Data",
+          "ok": true,
+          "tags": [
+            "smoke"
+          ],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "Desktop Chrome",
+              "projectName": "Desktop Chrome",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 20429,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Catalog page loaded successfully\n"
+                    },
+                    {
+                      "text": "ui order: [\n  \u001b[32m'Introduction to Machine Learning with Pytorch'\u001b[39m,\n  \u001b[32m'Deep Learning'\u001b[39m,\n  \u001b[32m'Introduction to Machine Learning with TensorFlow'\u001b[39m,\n  \u001b[32m'AWS Machine Learning Engineer Nanodegree'\u001b[39m,\n  \u001b[32m'Introduction to Deep Learning'\u001b[39m,\n  \u001b[32m'Supervised Learning'\u001b[39m,\n  \u001b[32m'Introduction to Machine Learning'\u001b[39m\n]\n"
+                    },
+                    {
+                      "text": "API Response Data:  {\n  searchResult: {\n    appliedRules: \u001b[1mnull\u001b[22m,\n    appliedRelevancyStrictness: \u001b[33m0\u001b[39m,\n    aroundLatLng: \u001b[32m''\u001b[39m,\n    automaticRadius: \u001b[32m''\u001b[39m,\n    exhaustiveFacetsCount: \u001b[33mfalse\u001b[39m,\n    exhaustiveNbHits: \u001b[33mtrue\u001b[39m,\n    explain: \u001b[1mnull\u001b[22m,\n    extensions: \u001b[1mnull\u001b[22m,\n    facets: \u001b[1mnull\u001b[22m,\n    facets_stats: \u001b[1mnull\u001b[22m,\n    hits: [\n      \u001b[36m[Object]\u001b[39m, \u001b[36m[Object]\u001b[39m,\n      \u001b[36m[Object]\u001b[39m, \u001b[36m[Object]\u001b[39m,\n      \u001b[36m[Object]\u001b[39m, \u001b[36m[Object]\u001b[39m,\n      \u001b[36m[Object]\u001b[39m\n    ],\n    hitsPerPage: \u001b[33m24\u001b[39m,\n    index: \u001b[32m''\u001b[39m,\n    indexUsed: \u001b[32m''\u001b[39m,\n    length: \u001b[33m0\u001b[39m,\n    message: \u001b[32m''\u001b[39m,\n    nbHits: \u001b[33m7\u001b[39m,\n    nbPages: \u001b[33m1\u001b[39m,\n    nbSortedHits: \u001b[33m0\u001b[39m,\n    offset: \u001b[33m0\u001b[39m,\n    page: \u001b[33m0\u001b[39m,\n    params: \u001b[32m'filters=locale%3Aen-us+AND+is_offered_to_public%3Atrue+AND+skills%3A%22taxonomy%3A8d5a0df8-ac30-4bee-a48d-fa19ad02bd43%22+AND+difficulty%3A%22Intermediate%22&hitsPerPage=24&page=0&query=scikit-learn'\u001b[39m,\n    parsedQuery: \u001b[32m''\u001b[39m,\n    processingTimeMS: \u001b[33m1\u001b[39m,\n    query: \u001b[32m'scikit-learn'\u001b[39m,\n    queryAfterRemoval: \u001b[32m''\u001b[39m,\n    queryID: \u001b[32m''\u001b[39m,\n    serverUsed: \u001b[32m''\u001b[39m,\n    timeoutCounts: \u001b[33mfalse\u001b[39m,\n    timeoutHits: \u001b[33mfalse\u001b[39m,\n    userData: \u001b[1mnull\u001b[22m,\n    abTestVariantID: \u001b[33m0\u001b[39m,\n    abTestID: \u001b[33m0\u001b[39m,\n    renderingContent: {}\n  }\n}\n"
+                    },
+                    {
+                      "text": "ui text: [\n  \u001b[32m'Introduction to Machine Learning with Pytorch'\u001b[39m,\n  \u001b[32m'Deep Learning'\u001b[39m,\n  \u001b[32m'Introduction to Machine Learning with TensorFlow'\u001b[39m,\n  \u001b[32m'AWS Machine Learning Engineer Nanodegree'\u001b[39m,\n  \u001b[32m'Introduction to Deep Learning'\u001b[39m,\n  \u001b[32m'Supervised Learning'\u001b[39m,\n  \u001b[32m'Introduction to Machine Learning'\u001b[39m\n]\n"
+                    },
+                    {
+                      "text": "ui result count: \u001b[33m7\u001b[39m\n"
+                    },
+                    {
+                      "text": "Unique Titles from API:  [\n  \u001b[32m'Introduction to Machine Learning with Pytorch'\u001b[39m,\n  \u001b[32m'Deep Learning'\u001b[39m,\n  \u001b[32m'Introduction to Machine Learning with TensorFlow'\u001b[39m,\n  \u001b[32m'AWS Machine Learning Engineer Nanodegree'\u001b[39m,\n  \u001b[32m'Introduction to Deep Learning'\u001b[39m,\n  \u001b[32m'Supervised Learning'\u001b[39m,\n  \u001b[32m'Introduction to Machine Learning'\u001b[39m\n]\n"
+                    },
+                    {
+                      "text": "✓ All UI results match API results (order-independent)\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Click on Catalog link",
+                      "duration": 4699
+                    },
+                    {
+                      "title": "Broad Search",
+                      "duration": 4633
+                    },
+                    {
+                      "title": "Sort by Rating: Highly Rated",
+                      "duration": 1318
+                    },
+                    {
+                      "title": "Skill Filter with value: scikit-learn",
+                      "duration": 2378
+                    },
+                    {
+                      "title": "Level Filter",
+                      "duration": 2578
+                    },
+                    {
+                      "title": "Search Results",
+                      "duration": 606
+                    }
+                  ],
+                  "startTime": "2025-06-16T06:44:35.373Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "Allure Metadata (metadata)",
+                      "contentType": "application/vnd.allure.message+json",
+                      "body": "eyJ0eXBlIjoibWV0YWRhdGEiLCJkYXRhIjp7ImRlc2NyaXB0aW9uIjoiU2VhcmNoIHdpdGggdmFsaWQgZGF0YTogc2Npa2l0In19"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "56a25a74bd4281c776e3-20a18af993afa066f1f4",
+          "file": "tests/search-input.spec.ts",
+          "line": 24,
+          "column": 1
+        },
         {
           "title": "@smoke Search with invalid data",
           "ok": true,
@@ -88,27 +177,27 @@
           ],
           "tests": [
             {
-              "timeout": 60000,
+              "timeout": 120000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "Desktop Chrome",
               "projectName": "Desktop Chrome",
               "results": [
                 {
-                  "workerIndex": 37,
+                  "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 12733,
+                  "duration": 12055,
                   "errors": [],
                   "stdout": [
                     {
                       "text": "Catalog page loaded successfully\n"
                     },
                     {
-                      "text": "API Results Count:  \u001b[33m0\u001b[39m\n"
+                      "text": "ui order: []\n"
                     },
                     {
-                      "text": "Search Input:  NonExistentRandomTerm1234\n"
+                      "text": "API Response Data:  {\n  searchResult: {\n    appliedRules: \u001b[1mnull\u001b[22m,\n    appliedRelevancyStrictness: \u001b[33m0\u001b[39m,\n    aroundLatLng: \u001b[32m''\u001b[39m,\n    automaticRadius: \u001b[32m''\u001b[39m,\n    exhaustiveFacetsCount: \u001b[33mfalse\u001b[39m,\n    exhaustiveNbHits: \u001b[33mtrue\u001b[39m,\n    explain: \u001b[1mnull\u001b[22m,\n    extensions: \u001b[1mnull\u001b[22m,\n    facets: \u001b[1mnull\u001b[22m,\n    facets_stats: \u001b[1mnull\u001b[22m,\n    hits: [],\n    hitsPerPage: \u001b[33m24\u001b[39m,\n    index: \u001b[32m''\u001b[39m,\n    indexUsed: \u001b[32m''\u001b[39m,\n    length: \u001b[33m0\u001b[39m,\n    message: \u001b[32m''\u001b[39m,\n    nbHits: \u001b[33m0\u001b[39m,\n    nbPages: \u001b[33m0\u001b[39m,\n    nbSortedHits: \u001b[33m0\u001b[39m,\n    offset: \u001b[33m0\u001b[39m,\n    page: \u001b[33m0\u001b[39m,\n    params: \u001b[32m'filters=locale%3Aen-us+AND+is_offered_to_public%3Atrue&hitsPerPage=24&page=0&query=NonExistentRandomTerm1234'\u001b[39m,\n    parsedQuery: \u001b[32m''\u001b[39m,\n    processingTimeMS: \u001b[33m1\u001b[39m,\n    query: \u001b[32m'NonExistentRandomTerm1234'\u001b[39m,\n    queryAfterRemoval: \u001b[32m''\u001b[39m,\n    queryID: \u001b[32m''\u001b[39m,\n    serverUsed: \u001b[32m''\u001b[39m,\n    timeoutCounts: \u001b[33mfalse\u001b[39m,\n    timeoutHits: \u001b[33mfalse\u001b[39m,\n    userData: \u001b[1mnull\u001b[22m,\n    abTestVariantID: \u001b[33m0\u001b[39m,\n    abTestID: \u001b[33m0\u001b[39m,\n    renderingContent: {}\n  }\n}\n"
                     }
                   ],
                   "stderr": [],
@@ -116,44 +205,50 @@
                   "steps": [
                     {
                       "title": "Click on Catalog link",
-                      "duration": 3572
+                      "duration": 3398
                     },
                     {
                       "title": "Broad Search",
-                      "duration": 4631
+                      "duration": 4536
                     },
                     {
                       "title": "Search Results",
-                      "duration": 488,
+                      "duration": 457,
                       "steps": [
                         {
                           "title": "Validate API results count",
-                          "duration": 3
+                          "duration": 2
                         }
                       ]
                     }
                   ],
-                  "startTime": "2025-06-14T10:05:52.423Z",
+                  "startTime": "2025-06-16T06:44:56.063Z",
                   "annotations": [],
-                  "attachments": []
+                  "attachments": [
+                    {
+                      "name": "Allure Metadata (metadata)",
+                      "contentType": "application/vnd.allure.message+json",
+                      "body": "eyJ0eXBlIjoibWV0YWRhdGEiLCJkYXRhIjp7ImRlc2NyaXB0aW9uIjoiU2VhcmNoIHdpdGggaW52YWxpZCBkYXRhOiBOb25FeGlzdGVudFJhbmRvbVRlcm0xMjM0In19"
+                    }
+                  ]
                 }
               ],
               "status": "expected"
             }
           ],
-          "id": "51e538f5e8a1c2ceeb95-e35f801d547a76258880",
-          "file": "tests/invalidSearchInput.spec.ts",
-          "line": 34,
-          "column": 5
+          "id": "56a25a74bd4281c776e3-7ac8cb20c130e07417d5",
+          "file": "tests/search-input.spec.ts",
+          "line": 43,
+          "column": 1
         }
       ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-06-14T10:05:50.983Z",
-    "duration": 14563.77199999988,
-    "expected": 1,
+    "startTime": "2025-06-16T06:44:34.435Z",
+    "duration": 33911.416000000005,
+    "expected": 2,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

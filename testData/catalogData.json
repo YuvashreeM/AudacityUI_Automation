@@ -1,10 +1,10 @@
 {
-    "validSearchText": "scikit",
-    "skillSearchInput": "scikit-learn",
-    "intermediateLevel": "intermediate",
-    "noResultsText": "No Results Found",
-    "invalidSearchText": "NonExistentRandomTerm1234",
-    "ratingFilter": "Highly Rated",
-    "levelFilter": "Intermediate",
-    "skillValue": "taxonomy:8d5a0df8-ac30-4bee-a48d-fa19ad02bd43"
+  "validSearchText": "scikit",
+  "skillSearchInput": "scikit-learn",
+  "intermediateLevel": "intermediate",
+  "noResultsText": "No Results Found",
+  "invalidSearchText": "NonExistentRandomTerm1234",
+  "ratingFilter": "Highly Rated",
+  "levelFilter": "Intermediate",
+  "skillValue": "taxonomy:8d5a0df8-ac30-4bee-a48d-fa19ad02bd43"
 }

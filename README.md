@@ -27,6 +27,7 @@ Ensure the following are installed/configured on your system:
 - A modern browser (Chromium, Firefox, or WebKit — handled by Playwright)
 
 > **Frameworks & Tools Used:**
+>
 > - Playwright Test Runner
 > - Allure (reporting)
 > - TypeScript
@@ -37,7 +38,7 @@ Ensure the following are installed/configured on your system:
 
 ```bash
 main/
-│   
+│
 ├── pages/
 │     ├── CatalogPage.ts
 │     └── headerPage.ts
@@ -75,32 +76,44 @@ main/
 ## 📌 Key Components
 
 ### 1. **Page Classes (`pages` folder)**
+
 Encapsulate locators and methods for interacting with specific pages of the Udacity catalog:
+
 - `CatalogPage.ts`: Handles catalog search, filtering, and sorting.
 - `headerPage.ts`: Handles header navigation and actions.
 
 ### 2. **Selectors Files (`selectors` folder)**
+
 Centralized JSON files that store selectors for identifying web elements. Used by Page Classes to interact with elements during test execution:
+
 - `catalogPageSelectors.json`: Selectors for catalog page elements (search, filters, results, etc).
 - `headerPageSelectors.json`: Selectors for header elements.
 
 ### 3. **Data Files (`testData` folder)**
+
 Centralized JSON files that store test data for validating various functionalities:
+
 - `catalogData.json`: Data for catalog search/filter validation.
 - `pageTitle.json`: Expected page titles for navigation validation.
 
 ### 4. **Test Files (`tests` folder)**
+
 Contains the actual test scripts that validate Udacity catalog functionalities using the Page Object Model (POM):
+
 - `search-input.spec.ts`: Playwright test cases for search, filter, and sort validation, including API/UI consistency checks.
 
 ### 5. **Base Files (`base` folder)**
+
 Foundational files that set up the test environment and provide shared functionality:
+
 - `pomFixture.ts`: Extends Playwright's `test` object to include custom fixtures for POM, initializing and providing instances of page classes and the API client for all test scripts.
 
 ### 6. **API Client (`utils` folder)**
+
 - `apiClient.ts`: Contains a reusable API client for making catalog search/filter requests, supporting UI/API validation.
 
 ### 7. **Configuration File**
+
 - `playwright.config.ts`: Central configuration for Playwright (browser settings, base URL, timeouts, reporters, etc).
 
 ---
@@ -120,6 +133,7 @@ npm run allure:full
 ```
 
 This command (defined in `package.json`) will:
+
 - Run all Playwright test cases
 - Generate the Allure report from test results
 - Serve the Allure report for easy viewing
@@ -153,9 +167,9 @@ This project uses GitHub Actions for continuous integration. The workflow is def
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 jobs:
   test:
     timeout-minutes: 60

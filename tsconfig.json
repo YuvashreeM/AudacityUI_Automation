@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.js"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "allure-results",
+    "allure-report",
+    "playwright-report",
+    "test-results"
+  ]
+}
