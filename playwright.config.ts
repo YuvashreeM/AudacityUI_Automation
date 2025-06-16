@@ -19,7 +19,7 @@ export default defineConfig({
   testMatch: ['search-input.spec.ts'], // Specify the test file to run
   use: {
     baseURL: 'https://www.udacity.com/',
-    headless: false,
+    headless: process.env.CI? true:false,
     screenshot: "only-on-failure",
     video: "retain-on-failure"
   },
