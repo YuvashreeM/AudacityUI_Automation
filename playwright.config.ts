@@ -21,7 +21,8 @@ export default defineConfig({
     baseURL: 'https://www.udacity.com/',
     headless: process.env.CI? true:false,
     screenshot: "only-on-failure",
-    video: "retain-on-failure"
+    video: "retain-on-failure",
+    userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/117.0.0.0 Safari/537.36'
   },
   timeout: 120000,
   retries: process.env.CI? 2:1,
