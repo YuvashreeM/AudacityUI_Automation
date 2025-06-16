@@ -36,13 +36,20 @@ test('@smoke Catalog Search Functionality With Valid Data', async ({
     catalogData.skillSearchInput,
     catalogData.skillValue,
     catalogData.levelFilter,
-    apiClient
-  ); // Verify the search results are displayed
+    apiClient,
+    true // enforceOrder=true: STRICT order validation - will FAIL if order doesn't match
+  );
 });
 
 test('@smoke Search with invalid data', async ({ headerPage, catalogPage, apiClient }) => {
   description(`Search with invalid data: ${catalogData.invalidSearchText}`);
   await headerPage.catalog(); // Navigate to the catalog page
   await catalogPage.search(catalogData.invalidSearchText); // Perform a search with invalid data
-  await catalogPage.searchResults(catalogData.invalidSearchText, null, null, apiClient); // Verify the search results are displayed
+  await catalogPage.searchResults(
+    catalogData.invalidSearchText,
+    null,
+    null,
+    apiClient,
+    false // enforceOrder=false: No order validation needed for invalid search
+  );
 });

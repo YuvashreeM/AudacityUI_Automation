@@ -11,7 +11,7 @@ const catalogSelectors = require('../selectors/catalogPageSelectors.json');
 export default class CatalogPage {
   constructor(public page: Page) {} // Constructor to initialize the page object
 
-  async search(searchInput) {
+  async search(searchInput: string) {
     await step('Broad Search', async () => {
       await this.page.locator(catalogSelectors.searchButton).click();
       // Fill the search input with the search term
@@ -90,7 +90,13 @@ export default class CatalogPage {
     });
   }
 
-  async searchResults(searchInput: string, skillValue, levelValue, apiClient: ApiClient) {
+  async searchResults(
+    searchInput: string,
+    skillValue: string,
+    levelValue: string,
+    apiClient: ApiClient,
+    enforceOrder: boolean = true
+  ) {
     await step('Search Results', async () => {
       const searchResultsLocator = this.page.locator(catalogSelectors.ResultsCount);
       const noResultsText = this.page.locator(catalogSelectors.noResults);
@@ -101,7 +107,7 @@ export default class CatalogPage {
       // Call the API client to get the API response
       const apiResponse = await apiClient.searchCatalog(searchInput, skillValue, levelValue);
       const responseData = apiResponse;
-      console.log('API Response Data: ', responseData);
+      // console.log('API Response Data: ', responseData);
       const apiResultsCount = responseData.searchResult?.hits?.length || 0;
 
       const flag = await noResultsText.isVisible();
@@ -138,16 +144,15 @@ export default class CatalogPage {
           // Check that the number of results match
           expect(uniqueTitles.length).toBe(uiResultsCount);
 
-          // Instead of strict order matching, check that all results are present in both sets
-          // This is more flexible and accounts for potential sorting differences
-          const uiResultsTrimmed = uiResultsOrdered.map(text => text.trim());
+          // Normalize text for comparison
           const normalizeText = (text: string) => text.toLowerCase().replace(/\s+/g, ' ').trim();
 
           // Normalize both sets for comparison
-          const normalizedUIResults = uiResultsTrimmed.map(normalizeText);
+          const normalizedUIResults = uiResultsOrdered.map(text => normalizeText(text.trim()));
           const normalizedAPIResults = uniqueTitles.map(normalizeText);
 
-          // Check that every UI result exists in API results
+          // CONTENT VALIDATION - Check that all results are present in both sets
+          console.log('=== CONTENT VALIDATION ===');
           for (const uiResult of normalizedUIResults) {
             const found = normalizedAPIResults.some(
               apiResult => apiResult.includes(uiResult) || uiResult.includes(apiResult)
@@ -158,8 +163,50 @@ export default class CatalogPage {
             }
             expect(found).toBe(true);
           }
+          console.log('✓ All UI results match API results (content validation passed)');
 
-          console.log('✓ All UI results match API results (order-independent)');
+          // ORDER VALIDATION - Configurable based on enforceOrder parameter
+          console.log('=== ORDER VALIDATION ===');
+          console.log('UI Results Order:', normalizedUIResults);
+          console.log('API Results Order:', normalizedAPIResults);
+
+          let orderMatches = true;
+          const minLength = Math.min(normalizedUIResults.length, normalizedAPIResults.length);
+
+          for (let i = 0; i < minLength; i++) {
+            const uiResult = normalizedUIResults[i];
+            const apiResult = normalizedAPIResults[i];
+
+            // Check if they match exactly or contain each other
+            const isMatch =
+              uiResult === apiResult ||
+              uiResult.includes(apiResult) ||
+              apiResult.includes(uiResult);
+
+            if (!isMatch) {
+              console.log(`Order mismatch at position ${i + 1}:`);
+              console.log(`  UI:  "${uiResult}"`);
+              console.log(`  API: "${apiResult}"`);
+              orderMatches = false;
+            }
+          }
+
+          if (orderMatches) {
+            console.log('UI and API results are in the same order');
+          } else {
+            console.log('UI and API results order differs');
+
+            if (enforceOrder) {
+              // Strict mode: Fail the test if order doesn't match
+              const errorMessage = `UI and API results order mismatch. Expected order: [${normalizedAPIResults.join(', ')}], Got: [${normalizedUIResults.join(', ')}]`;
+              console.error('STRICT ORDER MODE: Test failing due to order mismatch');
+              throw new Error(errorMessage);
+            } else {
+              // Flexible mode: Log warning but continue test
+              console.warn('Order validation failed, but test continues (enforceOrder=false)');
+              console.log('Set enforceOrder=true in test call to make order validation strict');
+            }
+          }
         } else {
           // If API has no results, we expect UI to either show no results or show fallback results
           // In this case, we just verify that API returned 0 results as expected
