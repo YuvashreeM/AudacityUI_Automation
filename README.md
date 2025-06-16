@@ -116,6 +116,10 @@ Foundational files that set up the test environment and provide shared functiona
 
 - `playwright.config.ts`: Central configuration for Playwright (browser settings, base URL, timeouts, reporters, etc).
 
+### 7. **.env File**
+
+- `.env`: Used to maintain the enviroment variables. The sample .env file is already attached with the project.
+
 ---
 
 ## ▶️ How to Run the Tests
