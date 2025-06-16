@@ -70,3 +70,4 @@ Unique Titles from API:  [
   'Supervised Learning',
   'Introduction to Machine Learning'
 ]
+✓ All UI results match API results (order-independent)
