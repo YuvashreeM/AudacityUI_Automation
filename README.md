@@ -36,7 +36,7 @@ Ensure the following are installed/configured on your system:
 ## 📁 Project Structure
 
 ```bash
-Udacity/
+main/
 │   
 ├── pages/
 │     ├── CatalogPage.ts
@@ -130,6 +130,72 @@ This command (defined in `package.json`) will:
 
 - **Allure Report**: Rich test report with step logs, screenshots, and test details.
 - **Playwright HTML Report**: Default Playwright report for quick debugging.
+
+---
+
+## 🤖 CI/CD with GitHub Actions
+
+This project uses GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/playwright.yml` and will automatically run Playwright tests and generate reports on every push or pull request to the `main` or `master` branches.
+
+### Key Steps in the Workflow:
+
+- **Checkout code**
+- **Setup Node.js**
+- **Install dependencies**
+- **Install Playwright browsers**
+- **Run Playwright tests**
+- **Generate Allure report from test results**
+- **Upload Playwright and Allure reports as artifacts**
+
+#### Example workflow snippet:
+
+```yaml
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - name: Generate Allure Report
+        run: npx allure generate allure-results --clean -o allure-report
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: allure-report
+          path: allure-report/
+          retention-days: 30
+```
+
+This ensures that every code change is automatically tested and detailed reports are available for review in the Actions tab.
+
+---
+
+## 📈 Allure Report Publishing in CI
+
+When the build is executed in CI (GitHub Actions), the Allure report is generated and published to the `gh-pages` branch. The latest report can be viewed by anyone with access to the repository via the GitHub Pages site for this project.
+
+This ensures that test results and trends are always accessible and up-to-date for all contributors and stakeholders.
 
 ---
 
