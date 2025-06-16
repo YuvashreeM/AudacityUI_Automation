@@ -1,0 +1,5 @@
+Catalog page loaded successfully
+ui order: []
+ui text: []
+ui result count: 0
+Unique Titles from API:  []

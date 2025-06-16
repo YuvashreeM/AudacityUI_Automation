@@ -1,0 +1,51 @@
+Catalog page loaded successfully
+ui order: [
+  'Introduction to Machine Learning with Pytorch',
+  'Deep Learning',
+  'Introduction to Machine Learning with TensorFlow',
+  'AWS Machine Learning Engineer Nanodegree',
+  'Introduction to Deep Learning',
+  'Supervised Learning',
+  'Introduction to Machine Learning'
+]
+ui text: [
+  'Introduction to Machine Learning with Pytorch',
+  'Deep Learning',
+  'Introduction to Machine Learning with TensorFlow',
+  'AWS Machine Learning Engineer Nanodegree',
+  'Introduction to Deep Learning',
+  'Supervised Learning',
+  'Introduction to Machine Learning'
+]
+ui result count: 7
+Unique Titles from API:  [
+  'Introduction to Machine Learning with Pytorch',
+  'Deep Learning',
+  'Introduction to Machine Learning with TensorFlow',
+  'AWS Machine Learning Engineer Nanodegree',
+  'Introduction to Deep Learning',
+  'Supervised Learning',
+  'Introduction to Machine Learning'
+]
+=== CONTENT VALIDATION ===
+✓ All UI results match API results (content validation passed)
+=== ORDER VALIDATION ===
+UI Results Order: [
+  'introduction to machine learning with pytorch',
+  'deep learning',
+  'introduction to machine learning with tensorflow',
+  'aws machine learning engineer nanodegree',
+  'introduction to deep learning',
+  'supervised learning',
+  'introduction to machine learning'
+]
+API Results Order: [
+  'introduction to machine learning with pytorch',
+  'deep learning',
+  'introduction to machine learning with tensorflow',
+  'aws machine learning engineer nanodegree',
+  'introduction to deep learning',
+  'supervised learning',
+  'introduction to machine learning'
+]
+UI and API results are in the same order
